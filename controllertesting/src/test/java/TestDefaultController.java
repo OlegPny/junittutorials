@@ -25,8 +25,18 @@ public class TestDefaultController {
         RequestHandler handler = new SampleHandler();
         controller.addHandler(request, handler);
         RequestHandler handler2 = controller.getHandler(request);
-        assertSame("Handler we set in controller should be the  \n" +
-                "                         same handler we get", handler, handler2);
+        assertSame("Handler we set in controller should be the same handler we get",
+                handler, handler2);
+    }
+
+    @Test
+    public void testProcessRequest() {
+        Request request = new SampleRequest();
+        RequestHandler handler = new SampleHandler();
+        controller.addHandler(request, handler);
+        Response response = controller.processRequest(request);
+        assertNotNull("Must not return null", response);
+        assertEquals("Response must be of type SampleResponse", SampleResponse.class, response.getClass());
     }
 
 
