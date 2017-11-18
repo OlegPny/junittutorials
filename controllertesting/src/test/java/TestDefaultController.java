@@ -36,6 +36,25 @@ public class TestDefaultController {
 
     private class SampleResponse implements Response {
 
+        private static final String NAME = "Test";
+
+        @Override
+        public boolean equals(Object o) {
+            boolean result = false;
+            if (o instanceof SampleResponse) {
+                result = (((SampleResponse) o).getName().equals(this.getName()));
+            }
+            return result;
+        }
+
+        @Override
+        public int hashCode() {
+            return NAME.hashCode();
+        }
+        
+        public String getName() {
+            return NAME;
+        }
     }
 
     @Test
